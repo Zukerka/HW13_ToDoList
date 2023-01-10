@@ -9,7 +9,55 @@
 <body>
     <script>
 
-        
+        const toDo = {
+            list: [],
+            
+            add(title, text) {
+                const note = {
+                    title,
+                    text, 
+                    completed: false,
+                }; 
+
+                if (this.checkUniq(title)){
+                    this.list.push(note); 
+                }
+
+            },
+
+            remove(title) {
+               const index = this.list.findIndex(note => note.title === title); 
+
+               this.list.splice(index, 1) 
+            }, 
+
+            toggle(title) {
+                this.list.forEach(note => {
+                    if(note.title === title){
+                        note.completed = !note.completed
+                    }
+                })
+            },
+
+            info() {
+                return this.list.reduce((info,note) => {
+                    if (!info.total){
+                        info.total = this.list.length;
+                    }
+
+                    if(!info[note.completed]){
+                        info[note.completed] = 1;
+                    }
+                        info[note.completed]++;
+
+                }, {})
+            }, 
+
+            checkUniq(title){
+                return !this.list.find(note => note.title === title)
+            } 
+        }
+
     </script>
 </body>
 </html>
