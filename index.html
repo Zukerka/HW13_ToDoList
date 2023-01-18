@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+        'use strict'
 
         const toDo = {
             list: [],
@@ -56,6 +57,57 @@
             checkUniq(title){
                 return !this.list.find(note => note.title === title)
             } 
+        }
+
+        // Object.freeze(toDo);
+        
+        // Object.defineProperty(toDo, 'checkUniq', {
+        //     enumerable: false, 
+        // }); 
+
+        // Object.defineProperties(toDo, {
+        //     add:{
+        //         enumerable: false
+        //     }, 
+
+        //     remove:{
+        //         enumerable: false
+        //     }, 
+
+        //     toggle: {
+        //         enumerable: false
+        //     }, 
+
+        //     info: {
+        //         enumerable: false
+        //     }, 
+
+        //     checkUniq: {
+        //         enumerable: false
+        //     }, 
+
+        // })
+
+        toDo.fre = function(){
+            console.log('Nothing gonna happen');
+        }
+        toDo.fre(); 
+
+        function makeEnumerable(object){
+            for (const key in object) {
+                
+                if (typeof(object[key]) === 'function'){
+                    Object.defineProperty(object, key, {enumerable: false})
+                }
+                
+             }
+            return object
+        }
+
+        makeEnumerable(toDo); 
+
+        for (const key in toDo) {
+            console.log(key);
         }
 
     </script>
