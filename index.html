@@ -24,6 +24,8 @@
                     this.list.push(note); 
                 }
 
+                return this.list; 
+
             },
 
             remove(title) {
@@ -38,6 +40,7 @@
                         note.completed = !note.completed
                     }
                 })
+                return this.list; 
             },
 
             info() {
@@ -53,63 +56,90 @@
 
                 }, {})
             }, 
-
+            
             checkUniq(title){
                 return !this.list.find(note => note.title === title)
             } 
+            
         }
 
-        // Object.freeze(toDo);
+        // console.log(toDo.info); 
         
-        // Object.defineProperty(toDo, 'checkUniq', {
-        //     enumerable: false, 
+        // Object.defineProperty(toDo, 'list', {
+        //    get(){
+        //     return list; 
+        //    }
         // }); 
 
-        // Object.defineProperties(toDo, {
-        //     add:{
-        //         enumerable: false
-        //     }, 
 
-        //     remove:{
-        //         enumerable: false
-        //     }, 
+        Object.defineProperties(toDo, {
+            add:{
+                enumerable: false, 
+                writable: false, 
+                configurable: false
+            }, 
 
-        //     toggle: {
-        //         enumerable: false
-        //     }, 
+            remove:{
+                enumerable: false, 
+                writable: false, 
+                configurable: false            
+            }, 
 
-        //     info: {
-        //         enumerable: false
-        //     }, 
+            toggle: {
+                enumerable: false, 
+                writable: false, 
+                configurable: false
+            }, 
 
-        //     checkUniq: {
-        //         enumerable: false
-        //     }, 
+            info: {
+                enumerable: false, 
+                writable: false, 
+                configurable: false
+            }, 
 
-        // })
+            checkUniq: {
+                enumerable: false, 
+                writable: false, 
+                configurable: false
+            }, 
 
-        toDo.fre = function(){
-            console.log('Nothing gonna happen');
-        }
-        toDo.fre(); 
-
-        function makeEnumerable(object){
-            for (const key in object) {
+        })
+        
+        console.log(toDo.add('new', 'new')); 
+        
+        Object.preventExtensions(toDo); 
+        
+        // function makeEnumerable(object){
+        //     for (const key in object) {
                 
-                if (typeof(object[key]) === 'function'){
-                    Object.defineProperty(object, key, {enumerable: false})
-                }
+        //         if (typeof(object[key]) === 'function'){
+        //             Object.defineProperty(object, key, {
+        //                 enumerable: false, 
+        //                 writable: false, 
+        //                 configurable: false})
+        //         }
                 
-             }
-            return object
-        }
+        //      }
+        //     return object
+        // }
 
-        makeEnumerable(toDo); 
+        // makeEnumerable(toDo); 
 
         for (const key in toDo) {
             console.log(key);
         }
+        
+        // delete toDo.add; 
+        // toDo.add = function(){
+        //     return console.log('Changed add method');
+        // }
 
+
+        // toDo.fre = function(){
+        //     console.log('Nothing gonna happen');
+        // }
+        // toDo.fre(); 
+        
     </script>
 </body>
 </html>
