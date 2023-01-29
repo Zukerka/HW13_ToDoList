@@ -110,44 +110,11 @@
 
         })
         
-        // Object.preventExtensions(toDo); 
+        Object.preventExtensions(toDo); 
         
         for (const key in toDo) {
             console.log(key);
         }
-        
-        toDo.list = [1, 2, 3];
-        console.log(toDo.list);
-
-        // function makeEnumerable(object){
-        //     for (const key in object) {
-                
-        //         if (typeof(object[key]) === 'function'){
-        //             Object.defineProperty(object, key, {
-        //                 enumerable: false, 
-        //                 writable: false, 
-        //                 configurable: false})
-        //         }
-                
-        //      }
-        //     return object
-        // }
-
-        // makeEnumerable(toDo); 
-
-        
-        // delete toDo.add; 
-        // toDo.add = function(){
-        //     return console.log('Changed add method');
-        // }
-
-
-        // toDo.fre = function(){
-        //     console.log('Nothing gonna happen');
-        // }
-        // toDo.fre(); 
-
-     
         
     </script>
 </body>
