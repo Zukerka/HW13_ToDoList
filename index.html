@@ -58,18 +58,23 @@
             }, 
             
             checkUniq(title){
-                return !this.list.find(note => note.title === title)
+                return !this.list.find(note => note.title === title); 
             } 
             
         }
 
-        // console.log(toDo.info); 
+        console.log(toDo.add('new', 'hi'));
+        console.log(toDo.add('new2', 'hi2'));
         
-        // Object.defineProperty(toDo, 'list', {
-        //    get(){
-        //     return list; 
-        //    }
-        // }); 
+        Object.defineProperty(toDo, 'list', {
+           set (list){
+            this._list = list; 
+           },
+
+            get (){
+                return this._list; 
+            }
+        }); 
 
 
         Object.defineProperties(toDo, {
@@ -105,10 +110,15 @@
 
         })
         
-        console.log(toDo.add('new', 'new')); 
+        // Object.preventExtensions(toDo); 
         
-        Object.preventExtensions(toDo); 
+        for (const key in toDo) {
+            console.log(key);
+        }
         
+        toDo.list = [1, 2, 3];
+        console.log(toDo.list);
+
         // function makeEnumerable(object){
         //     for (const key in object) {
                 
@@ -125,9 +135,6 @@
 
         // makeEnumerable(toDo); 
 
-        for (const key in toDo) {
-            console.log(key);
-        }
         
         // delete toDo.add; 
         // toDo.add = function(){
@@ -139,6 +146,8 @@
         //     console.log('Nothing gonna happen');
         // }
         // toDo.fre(); 
+
+     
         
     </script>
 </body>
